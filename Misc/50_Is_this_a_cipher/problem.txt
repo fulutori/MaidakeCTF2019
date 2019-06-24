@@ -1,0 +1,4 @@
+Flagを暗号化してやりました。
+
+--
+MaidakeCTF{base64_is_not_a_cipher}

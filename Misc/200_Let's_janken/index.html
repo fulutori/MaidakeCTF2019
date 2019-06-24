@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Let's Janken</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script type="text/javascript">
+document.oncontextmenu = function () {
+	window.alert("おっと、右クリックはさせませんよ？");
+	return false;
+}
+
+$(function(){
+	$(document).keydown(function(event){
+		var keyCode = event.keyCode;
+ 
+		if (keyCode == 123) {
+			window.alert("残念！F12は禁止です！！");
+			return false;
+		}
+	});
+});
+
+function set2fig(num) {
+	var ret;
+	if( num < 10 ) {
+		ret = "0" + num;
+	}	else {
+		ret = num;
+	}
+	return ret;
+}
+function showClock2() {
+	var nowTime = new Date();
+	var nowHour = set2fig( nowTime.getHours() );
+	var nowMin  = set2fig( nowTime.getMinutes() );
+	var nowSec  = set2fig( nowTime.getSeconds() );
+	var msg = nowHour + ":" + nowMin + ":" + nowSec;
+	document.getElementById("RealtimeClockArea2").innerHTML = msg;
+}
+setInterval('showClock2()',1000);
+</script>
+</head>
+<body>
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row my-2 kirei">
+			<div class="col-12 text-center kirei">
+				<p class="lead text-center mx-1 mt-5">じゃんけんしようぜ</p>
+				<div class="mt-5">
+					<font size="5rem">
+						<p id="error"><font color="#F00">javascriptを有効にしてください</font></p>
+						<script type="text/javascript"> error.style.display = "none"; </script>
+						<p id="RealtimeClockArea2" style="font-size: 5rem;">00:00:00</p>
+					</font>
+				</div>
+				<p class="lead text-center mx-1 mt-1" id="result"></p>
+				<p class="lead text-center mx-1" id="flag"></p>
+			</div>
+		</div>
+	</div>
+
+	<section class="bs-docs-section clearfix">
+		<div class="row kirei">
+			<div class="col-12 kirei">
+				<div class="bs-component">
+					<nav class="navbar navbar-expand-lg navbar-light bg-light">
+						<form class="form-inline my-2 my-lg-0 w-100" id="form" method="get" name="form1">
+							<div class="form-check w-75 mx-auto">
+							<button class="btn btn-danger py-5 my-2 my-sm-0 col-sm-3 mx-auto mb-1" type="button" onclick="janken('goo')" id="goo">グー</button>
+							<button class="btn btn-primary py-5 my-2 my-sm-0 col-sm-3 mx-auto mb-1" type="button" onclick="janken('choki')" id="choki">チョキ</button>
+							<button class="btn btn-warning py-5 my-2 my-sm-0 col-sm-3 mx-auto mb-1" type="button" onclick="janken('par')" id="par">パー</button>
+							</div>
+						</form>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<div id="page_top"><a href="#"></a></div>
+	<footer class="footer">
+		<div class="container mt-5">
+			<p class="text-muted text-center">Copyright © aokakes All Rights Reserved.</p>
+		</div>
+	</footer>
+</div>
+<script type="text/javascript">
+// ページにアクセス(更新)したら連勝数をリセット
+document.cookie = "victory=0";
+
+// 目標連勝数
+var goal = 1000
+
+// じゃんけん関数
+function janken(challenger_hand) {
+
+	// 現在時刻を取得
+	var nowTime = new Date();
+
+	// 秒数だけ抽出
+	temp_hand = Math.floor(set2fig(nowTime.getSeconds()) / 20);
+
+	// 秒数によってCPの手を選択する
+	if (temp_hand == 0) {
+		cp_hand = "goo";
+	}	else if (temp_hand == 1) {
+		cp_hand = "choki";
+	} else if (temp_hand == 2) {
+		cp_hand = "par";
+	}
+	
+	// cookieに記録されている連勝数を取得
+	var victory = parseInt(document.cookie.split("=")[1]);
+
+
+	// 挑戦者とCPの手を比較
+	// あいこのとき
+	if (challenger_hand == cp_hand) {
+		document.getElementById("result").innerHTML = "<p style=\"font-size: 3rem; color: #0000FF;\">あいこ</p>たかがじゃんけん、そう思ってないですか？<br>それやったら次も、あいこですよ。<br>ほな、（連勝数）いただきます。";
+
+		// 連勝数をリセット
+		if (victory < 1000) {
+			document.cookie = "victory=0";
+		}
+
+	// 挑戦者が負けたとき
+	} else if ((challenger_hand == "goo" && cp_hand == "par") || (challenger_hand == "par" && cp_hand == "choki") || (challenger_hand == "choki" && cp_hand == "goo")) {
+		document.getElementById("result").innerHTML = "<p style=\"font-size: 3rem; color: #0000FF;\">YOU LOSE!!</p>俺の勝ち！<br>何で負けたか、次までに考えといてください。<br>そしたら何かが見えてくるはずです。<br>ほな、（連勝数）いただきます。";
+
+		// 連勝数をリセット
+		if (victory < 1000) {
+			document.cookie = "victory=0";
+		}
+
+	// 挑戦者が勝ったとき
+	} else if ((challenger_hand == "goo" && cp_hand == "choki") || (challenger_hand == "par" && cp_hand == "goo") || (challenger_hand == "choki" && cp_hand == "par")) {
+		document.getElementById("result").innerHTML = "<p style=\"font-size: 3rem; color: #FF0000;\">勝利</p>やるやん。<br>次は俺にリベンジさせて。<br>では、（連勝数）どうぞ。";
+
+		// 連勝数+1
+		victory++;
+
+		// cookieに記録
+		document.cookie = "victory="+victory;
+	}
+
+	var victory = parseInt(document.cookie.split("=")[1]);
+
+	// 連勝数が1000を越えたらflagをゲット
+	if (victory >= 1000) {
+		$.post('flag.php', victory).done(function(data) {
+			document.getElementById("flag").innerHTML = data;
+		});
+	} else {
+		document.getElementById("flag").innerHTML = "<font style=\"font-size: 2rem; color: #FF0000;\">"+victory+"</font>連勝中です。";
+	}
+}
+</script>
+</body>
+</html>

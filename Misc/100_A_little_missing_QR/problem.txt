@@ -1,0 +1,4 @@
+QRコードを洗濯したら読めなくなってしまいました。
+
+--
+MaidakeCTF{restoring_qr_code_corners_is_easy}
