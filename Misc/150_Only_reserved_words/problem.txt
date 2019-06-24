@@ -1,4 +1,0 @@
-ちょっとこれだと読めませんね。なんとかしてください。
-
---
-MaidakeCTF{ppencode_consists_only_of_perl_reserved_words}

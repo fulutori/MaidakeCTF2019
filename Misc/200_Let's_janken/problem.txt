@@ -1,4 +1,0 @@
-あなたは何連勝することができますか？
-
---
-MaidakeCTF{javascript_makes_it_easy_to_see_the_source}

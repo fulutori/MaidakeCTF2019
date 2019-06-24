@@ -1,6 +1,6 @@
 from PIL import Image
 
-f = open('flag.txt', 'r')
+f = open('flag.csv', 'r')
 flag = f.readlines()
 
 for i in range(len(flag)):

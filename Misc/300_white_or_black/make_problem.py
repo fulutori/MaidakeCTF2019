@@ -7,7 +7,7 @@ img = Image.open(f_name)
 width, height = img.size
 img_pixels = np.array([[img.getpixel((i,j)) for j in range(height)] for i in range(width)])
 
-with open('flag.txt', 'w') as f:
+with open('flag.csv', 'w') as f:
 	for row in img_pixels:
 		for idx, col in enumerate(row):
 			if col == 255:
