@@ -1,4 +1,4 @@
-# QR puzzle
+# QR Puzzle
 
 ## 問題文
 私はスライドパズルが苦手です。
