@@ -14,13 +14,11 @@
 	<div class="page-header" id="banner">
 		<div class="row my-2 kirei">
 			<div class="col-12 text-center">
-				<div class="lead text-center mx-1 mt-5"><h2>QR Puzzle</h2></div>
-				<div class="mt-5">
+				<div class="lead mx-1 my-5"><h2>QR Puzzle</h2></div>
 					<font size="5rem">
 						<p id="error"><font color="#F00">javascriptを有効にしてください</font></p>
 						<script type="text/javascript"> error.style.display = "none"; </script>
 					</font>
-				</div>
 				<p class="lead text-center mx-1 mt-1" id="result"></p>
 				<p class="lead text-center mx-1" id="flag"></p>
 			</div>
@@ -28,18 +26,14 @@
 	</div>
 
 	<section class="bs-docs-section clearfix">
-		<div class="row kirei">
-			<div class="col-12 kirei">
-				<div class="bs-component">
-					<nav class="navbar navbar-expand-lg navbar-light bg-light">
-						<form class="form-inline my-2 my-lg-0 w-100" id="form" method="get" name="form1">
-							<div id="panel" class="mx-auto mb-5"></div>
-							<div class="form-check w-75 mx-auto mt-3">
-								<input type="button" class="btn btn-primary py-3 my-2 my-sm-0 col-sm-6 mx-auto mb-1" onclick="flag(); return false;" value="送信" id="status">
-							</div>
-						</form>
-					</nav>
-				</div>
+		<div class="row">
+			<div class="col-12">
+				<form class="form-inline my-2 my-lg-0 w-100" id="form" method="get" name="form1">
+					<div id="panel" class="mx-auto mb-5"></div>
+					<div class="form-check w-75 mx-auto mt-3">
+						<input type="button" class="btn btn-primary py-3 my-2 my-sm-0 col-sm-6 mx-auto mb-1" onclick="flag(); return false;" value="送信" id="status">
+					</div>
+				</form>
 			</div>
 		</div>
 	</section>
