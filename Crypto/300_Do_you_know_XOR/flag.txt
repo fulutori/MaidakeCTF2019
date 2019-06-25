@@ -1,0 +1,2 @@
+MaidakeCTF{You_know_the_characteristics_of_XOR}
+secret_key = "You_can_know_the_plane_text_without_the_secret_key"
