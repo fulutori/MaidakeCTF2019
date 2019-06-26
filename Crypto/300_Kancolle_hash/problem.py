@@ -11,7 +11,6 @@ for md5 in md5_server:
 		key += ord(moji)
 
 enc_flag = ''
-amari_list = []
 for moji in FLAG:
 	to_ord = key // ord(moji)
 	enc_flag += chr(to_ord)
