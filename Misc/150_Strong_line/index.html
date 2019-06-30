@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Strong line</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row my-2 kirei">
+			<div class="col-12 text-center">
+				<div class="lead mx-1 my-5"><h2>Strong line</h2></div>
+				<font size="5rem">
+					<p id="error"><font color="#F00">javascriptを有効にしてください</font></p>
+					<script type="text/javascript"> error.style.display = "none"; </script>
+				</font>
+			</div>
+		</div>
+	</div>
+
+	<section class="bs-docs-section clearfix">
+		<div class="row">
+			<div class="col-12">
+				<img src="code.png" id="flag" width="100%" height="5">
+				<div class="text-center mt-3">
+					1 <input type="range" id="range" min="5" max="54" value="0" width="100"> 50
+				</div>
+				<div class="text-center" id="value" style="font-size: 3rem">1</div>
+			</div>
+		</div>
+	</section>
+	
+	<footer class="footer">
+		<div class="container mt-5">
+			<p class="text-muted text-center">Copyright © aokakes All Rights Reserved.</p>
+		</div>
+	</footer>
+</div>
+<script>
+var elem = document.getElementById('range');
+var target = document.getElementById('value');
+var flag = document.getElementById('flag');
+var rangeValue = function (elem, target) {
+	return function(evt){
+		target.innerHTML = elem.value - 4;
+		flag.height = elem.value;
+	}
+}
+elem.addEventListener('input', rangeValue(elem, target));
+</script>
+</body>
+</html>
