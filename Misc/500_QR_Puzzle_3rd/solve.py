@@ -22,22 +22,36 @@ def read_puzzle():
 			puzzle_dic['r1c3'] = cv2.imread(path + puzzle_path)
 		elif puzzle_path == 'r1c4.png':
 			puzzle_dic['r1c4'] = cv2.imread(path + puzzle_path)
+		elif puzzle_path == 'r1c5.png':
+			puzzle_dic['r1c5'] = cv2.imread(path + puzzle_path)
+
 		elif puzzle_path == 'r2c1.png':
 			puzzle_dic['r2c1'] = cv2.imread(path + puzzle_path)
-		elif puzzle_path == 'r2c4.png':
-			puzzle_dic['r2c4'] = cv2.imread(path + puzzle_path)
+		elif puzzle_path == 'r2c3.png':
+			puzzle_dic['r2c3'] = cv2.imread(path + puzzle_path)
+		elif puzzle_path == 'r2c5.png':
+			puzzle_dic['r2c5'] = cv2.imread(path + puzzle_path)
+		
 		elif puzzle_path == 'r3c1.png':
 			puzzle_dic['r3c1'] = cv2.imread(path + puzzle_path)
-		elif puzzle_path == 'r3c4.png':
-			puzzle_dic['r3c4'] = cv2.imread(path + puzzle_path)
+		elif puzzle_path == 'r3c5.png':
+			puzzle_dic['r3c5'] = cv2.imread(path + puzzle_path)
+		
 		elif puzzle_path == 'r4c1.png':
 			puzzle_dic['r4c1'] = cv2.imread(path + puzzle_path)
-		elif puzzle_path == 'r4c2.png':
-			puzzle_dic['r4c2'] = cv2.imread(path + puzzle_path)
-		elif puzzle_path == 'r4c3.png':
-			puzzle_dic['r4c3'] = cv2.imread(path + puzzle_path)
-		elif puzzle_path == 'r4c4.png':
-			puzzle_dic['r4c4'] = cv2.imread(path + puzzle_path)
+		elif puzzle_path == 'r4c5.png':
+			puzzle_dic['r4c5'] = cv2.imread(path + puzzle_path)
+
+		elif puzzle_path == 'r5c1.png':
+			puzzle_dic['r5c1'] = cv2.imread(path + puzzle_path)
+		elif puzzle_path == 'r5c2.png':
+			puzzle_dic['r5c2'] = cv2.imread(path + puzzle_path)
+		elif puzzle_path == 'r5c3.png':
+			puzzle_dic['r5c3'] = cv2.imread(path + puzzle_path)
+		elif puzzle_path == 'r5c4.png':
+			puzzle_dic['r5c4'] = cv2.imread(path + puzzle_path)
+		elif puzzle_path == 'r5c5.png':
+			puzzle_dic['r5c5'] = cv2.imread(path + puzzle_path)
 
 		# 確定していない部分は画像名で辞書に格納
 		else:
@@ -54,7 +68,7 @@ def make_qr(puzzle_dic, puzzle):
 	# 生成された組み合わせでリストを作成
 	for idx, im in enumerate(puzzle):
 		temp.append(puzzle_dic[im])
-		if len(temp) == 4:
+		if len(temp) == 5:
 			im_list.append(temp)
 			temp = []
 
@@ -86,14 +100,15 @@ if __name__ == '__main__':
 	puzzle_dic = read_puzzle()
 
 	# 場所が不明なパズルの一覧
-	puzzle_list = ['1', '2', '3', '4']
+	puzzle_list = ['1', '2', '3', '4', '5', '6', '7', '8']
 
 	# 不明なパズルを総当り
 	for pattern in itertools.permutations(puzzle_list):
-		puzzle = [ 'r1c1', 'r1c2', 'r1c3', 'r1c4',
-					'r2c1',		 0,		 0, 'r2c4',
-					'r3c1', 	 0,		 0, 'r3c4',
-					'r4c1', 'r4c2', 'r4c3', 'r4c4']
+		puzzle = [ 'r1c1', 'r1c2', 'r1c3', 'r1c4', 'r1c5',
+					'r2c1',		 0,		 0, 	  0, 'r2c5',
+					'r3c1', 	 0,	'r3c3', 	  0, 'r3c5',
+					'r4c1', 	 0,		 0, 	  0, 'r4c5',
+					'r5c1', 'r5c2', 'r5c3', 'r5c4', 'r5c5']
 		
 		cnt = 0
 		for i in range(len(puzzle)):

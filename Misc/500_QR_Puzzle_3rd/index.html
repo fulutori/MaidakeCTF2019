@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>QR Puzzle 3rd</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container" style="min-width: 540px">
+	<div class="page-header" id="banner">
+		<div class="row my-2 kirei">
+			<div class="col-12 text-center">
+				<div class="lead mx-1 my-5"><h2>QR Puzzle 3rd</h2></div>
+					<font size="5rem">
+						<p id="error"><font color="#F00">javascriptを有効にしてください</font></p>
+						<script type="text/javascript"> error.style.display = "none"; </script>
+					</font>
+				<p class="lead text-center mx-1 mt-1" id="result"></p>
+				<p class="lead text-center mx-1" id="flag"></p>
+			</div>
+		</div>
+	</div>
+
+	<section class="bs-docs-section clearfix">
+		<div class="row">
+			<div class="col-12">
+				<form class="form-inline my-2 my-lg-0 w-100" id="form" method="get" name="form1">
+					<div id="panel" class="mx-auto mb-5"></div>
+					<div class="form-check w-75 mx-auto mt-3">
+						<input type="button" class="btn btn-primary py-3 my-2 my-sm-0 col-sm-6 mx-auto mb-1" onclick="flag(); return false;" value="送信" id="status">
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+	
+	<div id="page_top"><a href="#"></a></div>
+	<footer class="footer">
+		<div class="container mt-5">
+			<p class="text-muted text-center">Copyright © aokakes All Rights Reserved.</p>
+		</div>
+	</footer>
+</div>
+<script type="text/javascript">
+tiles = [];
+
+window.onload = function() {
+
+	var arr = ['puzzle1', 'puzzle2', 'puzzle3', 'puzzle4', 'puzzle5', 'puzzle6', 'puzzle7', 'puzzle8', 'puzzle9', 'puzzle10', 'puzzle11', 'puzzle12', 'puzzle13', 'puzzle14', 'puzzle15', 'puzzle16', 'puzzle17', 'puzzle18', 'puzzle19', 'puzzle20', 'puzzle21', 'puzzle22', 'puzzle23', 'puzzle24', ''];		
+	shuffle(arr);
+
+	var panel = document.getElementById('panel');
+	for (i = 0; i < 25; i++){
+		var div = document.createElement('div');
+		div.className = 'tile';
+		div.index = i;
+		if (arr[i] != '') {
+			div.classList.add(arr[i]);
+			div.textContent = '';
+		} else {
+			div.textContent = ' ';
+		}
+		div.onclick = click;
+		panel.appendChild(div);
+		tiles.push(div);
+	}
+} 
+
+function shuffle(arr) {
+
+	var n = arr.length;
+	var temp, i;
+
+	while (n) {
+		i = Math.floor(Math.random() * n--);
+		temp = arr[n];
+		arr[n] = arr[i];
+		arr[i] = temp;
+	}
+	return arr;
+}
+
+function swapContent(i, k){
+
+	var mae = tiles[i].className.split(' ')[1];
+	var usiro = tiles[k].className.split(' ')[1];
+
+	if (mae == null) {
+		tiles[i].classList.add(usiro);
+		tiles[k].classList.remove(usiro);
+		tiles[i].textContent = null;
+		tiles[k].textContent = ' ';
+	} else if (usiro == null) {
+		tiles[i].classList.remove(mae);
+		tiles[k].classList.add(mae);
+		tiles[i].textContent = ' ';
+		tiles[k].textContent = null;
+	}
+}
+
+function click(e) {
+		
+	var i = e.target.index;
+
+	// 2行目選択で3行目と入れ替え
+	if (i <= 9 && tiles[i + 5].textContent == ' ' ){
+		swapContent(i, i + 5);
+
+	// 2行目選択で1行目と入れ替え
+	} else if ( i >= 5 && tiles[i - 5].textContent == ' '){
+		swapContent(i, i - 5);
+
+	// 3行目選択で4行目と入れ替え
+	} else if ( i <= 14 && tiles[i + 5].textContent == ' '){
+		swapContent(i, i + 5);
+	
+	// 3行目選択で2行目と入れ替え
+	} else if ( i >= 10 && tiles[i - 5].textContent == ' '){
+		swapContent(i, i - 5);
+
+	// 4行目選択で5行目と入れ替え
+	} else if ( i <= 19 && tiles[i + 5].textContent == ' '){
+		swapContent(i, i + 5);
+	
+	// 4行目選択で3行目と入れ替え
+	} else if ( i >= 15 && tiles[i - 5].textContent == ' '){
+		swapContent(i, i - 5);
+
+	} else if (i % 5 !== 4 && tiles[i + 1].textContent == ' '){
+		swapContent(i, i + 1);
+	} else if (i % 5 !== 0 && tiles[i - 1].textContent == ' '){
+		swapContent(i, i - 1);
+	}
+}
+
+function flag() {
+	if (tiles[24].textContent == ' ') {
+		var button = document.getElementById('status').value;
+		if (button == '送信') {
+			tiles[24].classList.add('puzzle25', 'img-wrap');
+			document.getElementById('status').value = '戻す'; 
+			document.getElementById('status').classList.remove('btn-primary');
+			document.getElementById('status').classList.add('btn-danger');
+		} else if (button == "戻す") {
+			tiles[24].classList.remove('puzzle25', 'img-wrap');
+			document.getElementById('status').value = '送信';
+			document.getElementById('status').classList.remove('btn-danger');
+			document.getElementById('status').classList.add('btn-primary');
+		}
+	}
+}
+
+</script>
+</body>
+</html>
