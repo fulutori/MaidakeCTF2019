@@ -26,7 +26,11 @@ if __name__ == '__main__':
 	img = Image.open('qr.png')
 	width, height = img.size
 	puzzles = ImgSplit(img, width, height)
+	last_puzzle = puzzles[-1]
+	puzzles = puzzles[:-1]
 	random.shuffle(puzzles)
+	puzzles.append(last_puzzle)
+	
 	
 	for idx, puzzle in enumerate(puzzles):
 		puzzle.save("{}{}.png".format(path,idx+1), "PNG")
