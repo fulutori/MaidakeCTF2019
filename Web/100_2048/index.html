@@ -25,10 +25,14 @@
 	<div class="row">
 		<div class="col-12 text-center">
 			<h2>Score : <div style="display:inline;" id="score"></div></h2>
+			<p>Max : <span id="max_num">2</span></p>
 			<div id="canvas"></div>	
-			<input type="button" onclick="return load();" class="w-25 py-2 mb-5" value="リセット">
-			<p><b>遊び方</b></p>
+			<input type="button" onclick="return load();" class="w-25 py-2" value="リセット">
+			<h3 class="mt-5"><b>遊び方</b></h3>
 			<p>方向キー(↑→↓←)でタイルを移動させて、同じ数字がぶつかると数字が倍になります。<br>2048を目指しましょう。</p>
+			<h3 class="mt-5 mb-3"><b>ランキング</b></h3>
+			<div id="ranking"></div>
+			<font color="#FFF">高得点を取っておくと良いことがあるかも...?</font>
 		</div>
 	</div>
 	
@@ -76,6 +80,13 @@
 		
 		score = 0;
 		document.getElementById("score").innerHTML = score;
+		document.getElementById("max_num").innerHTML = 2;
+		
+		// ランキング表示
+		$.post('ranking.php', score).done(function(data) {
+			document.getElementById("ranking").innerHTML = data;
+		});
+
 		return false;
 	}
 	
@@ -355,13 +366,22 @@
 			}
 		}
 		if(isOver) {
-			alert("お疲れ様です！\nMaidakeCTF{Do_not_be_fooled_by_the_look}");
+			name = window.prompt("お疲れ様でした！\nMaidakeCTF{Do_not_be_fooled_by_the_look}\n\nランキングに参加できます。\nユーザー名を入力してください。\n※参加しない場合は何も入力せずにOKを押してください。", "");
+			if (name != '') {
+				$.post('ranking.php', {'name': name, 'score': score, 'max': max_num.textContent}).done(function(data) {
+					document.getElementById("ranking").innerHTML = data;
+				});
+			}
+			name = '';
 		}
 		return false;
 	}
 
 	function getColor(val) {
 		var color = "#ffffff";
+		if (val > document.getElementById("max_num").textContent) {
+			document.getElementById('max_num').innerHTML = val;
+		}
 		switch(val) {
 			case 2:		color = "#F6CED8"; break;
 			case 4:		color = "#F7BE81"; break;
@@ -392,26 +412,27 @@
 		}
 	};
 	
-	document.onkeydown = function(e) {
-		e.preventDefault();
-		switch (e.keyCode) {
-			case 37:
-				left();
-				break;
-			case 38:
-				up();
-				break;
-			case 39:
-				right();
-				break;
-			case 40:
-				down();
-				break;
-		}
-	};
-
 	load();
+	
+	$(function(){
+		$(document).keydown(function(event){
+			var keyCode = event.keyCode;
+			if (keyCode == 37) {
+				left();
+				return false;
+			} else if (keyCode == 38) {
+				up();
+				return false;
+			} else if (keyCode == 39) {
+				right();
+				return false;
+			} else if (keyCode == 40) {
+				down();
+				return false;
+			}
 
+		});
+	});
 </script>
 </body>
 </html>
