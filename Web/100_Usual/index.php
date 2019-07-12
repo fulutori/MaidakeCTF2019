@@ -61,7 +61,6 @@
 		</div>
 	</section>
 	
-	<div id="page_top"><a href="#"></a></div>
 	<footer class="footer">
 		<div class="container mt-5">
 			<p class="text-muted text-center">Copyright © aokakes All Rights Reserved.</p>
