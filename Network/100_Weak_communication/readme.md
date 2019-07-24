@@ -4,7 +4,7 @@
 丸見えです。
 
 ## 添付ファイル
-- problem.pcap.pcapng
+- problem.pcapng
 
 ## Flag
 MaidakeCTF{Wireshark_is_very_useful}
