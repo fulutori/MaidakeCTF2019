@@ -10,4 +10,4 @@ nc localhost 15410
 なし
 
 ## Flag
-The Flag is MaidakeCTF{It_is_also_possible_to_calculate_it_by_yourself}
+MaidakeCTF{It_is_also_possible_to_calculate_it_by_yourself}
