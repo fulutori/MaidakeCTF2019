@@ -10,4 +10,4 @@ nc localhost 12345
 なし
 
 ## Flag
-The Flag is MaidakeCTF{CTF_may_hide_hints_for_other_issues}
+MaidakeCTF{CTF_may_hide_hints_for_other_issues}
