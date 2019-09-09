@@ -95,7 +95,6 @@ if(!isset($_SESSION['user'])) {
 					<?php
 						if(isset($_POST['check'])) {
 							$cmd = "python3 check.py $id";
-							print($cmd);
 							#exec($cmd, $result);
 							#echo $result;
 						}
