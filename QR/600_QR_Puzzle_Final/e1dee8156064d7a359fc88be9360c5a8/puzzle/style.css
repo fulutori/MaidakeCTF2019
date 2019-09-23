@@ -1,0 +1,86 @@
+#panel {
+	width: 330px;
+	height: 330px;
+	overflow: hidden;
+}
+
+.tile {
+	width: 110px;
+	height: 110px;
+	line-height: 110px;
+	border: 1px solid silver;
+	text-align: center;
+	font-size: 26px;
+	font-weight: bold;
+	float: left;
+	cursor: pointer;
+}
+
+.puzzle1 {
+	width: 110px;
+	height: 110px;
+	background: url('./puzzle/1.png');
+}
+
+.puzzle2 {
+	width: 110px;
+	height: 110px;
+	background: url('./puzzle/2.png');
+}
+
+.puzzle3 {
+	width: 110px;
+	height: 110px;
+	background: url('./puzzle/3.png');
+}
+
+.puzzle4 {
+	width: 110px;
+	height: 110px;
+	background: url('./puzzle/4.png');
+}
+
+.puzzle5 {
+	width: 110px;
+	height: 110px;
+	background: url('./puzzle/5.png');
+}
+
+.puzzle6 {
+	width: 110px;
+	height: 110px;
+	background: url('./puzzle/6.png');
+}
+
+.puzzle7 {
+	width: 110px;
+	height: 110px;
+	background: url('./puzzle/7.png');
+}
+
+.puzzle8 {
+	width: 110px;
+	height: 110px;
+	background: url('./puzzle/8.png');
+}
+
+.puzzle9 {
+	width: 110px;
+	height: 110px;
+	background: url('./puzzle/9.png');
+}
+
+.img-wrap {
+  animation: img-wrap 2s cubic-bezier(.4, 0, .2, 1);
+}
+
+@keyframes img-wrap {
+  0% {
+    clip-path: circle(0 at 50% 50%);
+    -webkit-clip-path: circle(0 at 50% 50%);
+  }
+  100% {
+    clip-path: circle(100% at 50% 50%);
+    -webkit-clip-path: circle(100% at 50% 50%);
+  }
+}
