@@ -8,6 +8,3 @@ URL
 
 ## Flag
 MaidakeCTF{Falsifying_coordinates_is_surprisingly_easy}
-
-## 検証用URL
-https://aokakes.work/CTF/MaidakeCTF2019/Teleport/

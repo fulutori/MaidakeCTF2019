@@ -17,6 +17,3 @@ MaidakeCTF{AES-ECB_mode_is_Vulnerable}
 ## 検証コード
 - solve.py
 - solve.png
-
-## その他
-ソースがコピペなので書き直したい…

@@ -8,6 +8,3 @@ URL
 
 ## Flag
 MaidakeCTF{I_am_getting_tired_of_thinking_about_flags}
-
-## 検証用URL
-https://aokakes.work/CTF/MaidakeCTF2019/Not_hiding/

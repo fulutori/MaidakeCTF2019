@@ -8,6 +8,3 @@ URL
 
 ## Flag
 MaidakeCTF{Beware_of_cookie_theft}
-
-## 検証用URL
-https://aokakes.work/CTF/MaidakeCTF2019/Baked_goods/
